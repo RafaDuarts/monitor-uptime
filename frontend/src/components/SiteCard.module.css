@@ -1,0 +1,58 @@
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid #333333;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  color: var(--fg);
+}
+
+/* Container principal: usa flex para alinhar nome/url e botão */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Conteúdo da esquerda (nome + url + botão histórico) */
+.site-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Botões alinhados à direita */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+/* Badges e botões */
+.badgeUp {
+  background-color: var(--badge-up-bg);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.badgeDown {
+  background-color: var(--badge-down-bg);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+/* Gráfico fica abaixo do header, com margem */
+.site-logs-container {
+  margin-top: 16px;
+  width: 100%;
+}

@@ -1,0 +1,41 @@
+:root {
+  --bg: #121212;
+  --fg: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --primary: #3b82f6;
+  --danger: #ef4444;
+  --input-bg: #2c2c2c;
+  --input-border: #444444;
+  --badge-up-bg: #10b981;
+  --badge-down-bg: #ef4444;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+button:hover {
+  background: #2563eb;
+}
+button.danger {
+  background: var(--danger);
+}
+button.danger:hover {
+  background: #dc2626;
+}
