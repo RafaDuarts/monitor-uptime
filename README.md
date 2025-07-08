@@ -19,7 +19,7 @@ Aplicativo completo (frontend + backend + banco de dados) para monitorar a dispo
 
 ### 1. Clonar o repositório
 ```bash
-git clone https://github.com/seu-usuario/monitor-uptime.git
+git clone https://github.com/RafaDuarts/monitor-uptime.git
 cd monitor-uptime
 ```
 
