@@ -9,15 +9,43 @@ async function checkSite(site) {
     const start = Date.now();
     await axios.get(site.url, { timeout: 5000 });
     const responseTime = Date.now() - start;
+    const currentStatus = "UP";
 
-    await StatusLog.create({ siteId: site._id, status: "UP", responseTime });
+    // Salvar log
+    await StatusLog.create({ siteId: site._id, status: currentStatus, responseTime });
+
+    // Se status mudou, enviar alerta
+    if (site.lastStatus !== currentStatus) {
+      console.log(`🔔 Alteração detectada: ${site.url} voltou ao ar (${responseTime}ms)`);
+      await sendAlert(site, currentStatus);
+    }
+
+    // Atualizar status atual no banco
+    site.lastStatus = currentStatus;
+    await site.save();
+
     console.log(`✅ ${site.url} está online (${responseTime}ms)`);
+
   } catch (error) {
-    await StatusLog.create({ siteId: site._id, status: "DOWN", responseTime: 0 });
+    const currentStatus = "DOWN";
+
+    // Salvar log
+    await StatusLog.create({ siteId: site._id, status: currentStatus, responseTime: 0 });
+
+    // Se status mudou, enviar alerta
+    if (site.lastStatus !== currentStatus) {
+      console.log(`🔔 Alteração detectada: ${site.url} está fora do ar`);
+      await sendAlert(site, currentStatus);
+    }
+
+    // Atualizar status atual no banco
+    site.lastStatus = currentStatus;
+    await site.save();
+
     console.log(`❌ ${site.url} está fora do ar`);
-    sendAlert(site);
   }
 }
+
 
 function startMonitoring() {
   cron.schedule("*/2 * * * *", async () => {
